@@ -12,20 +12,20 @@ ENV HIPPO_URL http://download.demo.onehippo.com/7.9.4/HippoCMS-GoGreen-Enterpris
 RUN mkdir -p /srv/hippo
 
 # Add Oracle Java Repositories
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common
-RUN DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:webupd8team/java
-RUN DEBIAN_FRONTEND=noninteractive apt-get update
+RUN DEBIAN_FRONTEND=noninteractive yum  install -y software-properties-common
+RUN DEBIAN_FRONTEND=noninteractive add-yum-repository ppa:webupd8team/java
+RUN DEBIAN_FRONTEND=noninteractive yum update
 
 # Approve license conditions for headless operation
 RUN echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
 RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
 
 # Install packages required to install Hippo CMS
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y oracle-java7-installer
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y oracle-java7-set-default
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y dos2unix
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y unzip
+RUN DEBIAN_FRONTEND=noninteractive yum install -y oracle-java7-installer
+RUN DEBIAN_FRONTEND=noninteractive yum install -y oracle-java7-set-default
+RUN DEBIAN_FRONTEND=noninteractive yum install -y curl
+RUN DEBIAN_FRONTEND=noninteractive yum install -y dos2unix
+RUN DEBIAN_FRONTEND=noninteractive yum install -y unzip
 
 # Install Hippo CMS, retrieving the GoGreen demonstration from the $HIPPO_URL and putting it under $HIPPO_FOLDER
 RUN curl -L $HIPPO_URL -o $HIPPO_FILE

@@ -12,7 +12,7 @@ ENV HIPPO_URL http://download.demo.onehippo.com/7.9.4/HippoCMS-GoGreen-Enterpris
 RUN mkdir -p /srv/hippo
 
 # Add Oracle Java Repositories
-RUN DEBIAN_FRONTEND=noninteractive yum  install -y software-properties-common
+RUN DEBIAN_FRONTEND=noninteractive yum install -y software-properties-common
 RUN DEBIAN_FRONTEND=noninteractive add-yum-repository ppa:webupd8team/java
 RUN DEBIAN_FRONTEND=noninteractive yum update
 
